@@ -5,8 +5,6 @@ Shader "Custom/Toom"
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _RampTex("Ramp",2D) = "white"{}
-        _Glossiness("Smoothness", Range(0,1)) = 0.5
-        _Metallic("Metallic", Range(0,1)) = 0.0
     }
     SubShader
     {
@@ -44,7 +42,7 @@ Shader "Custom/Toom"
             fixed4 c;
             //ƒƒbƒVƒ…‚Ì•`‰æ‚·‚éF‚ğŒˆ‚ß‚é
             c.rgb = s.Albedo * _LightColor0.rgb * ramp;
-            c.a = 0;
+            c.a = 0.5;
             return c;
         }
 
