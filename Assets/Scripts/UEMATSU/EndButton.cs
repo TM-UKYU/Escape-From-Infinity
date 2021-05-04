@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class EndButton : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        //ステージ1をロードするための処理
-        SceneManager.LoadScene("StageOne");
+        //タイトルに戻るための処理
+        SceneManager.LoadScene("NewTitle");
     }
 }
