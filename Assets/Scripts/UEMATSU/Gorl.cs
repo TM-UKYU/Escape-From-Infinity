@@ -19,9 +19,17 @@ public class Gorl : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")
         {
+            //ゲームクリアのキャンバスを表示
             ClearCanvas.SetActive(true);
+            //経過時間を計測するタイマーを止める
             ScoreManager.GetComponent<ScoreManeger>().StopTime(true);
+            //時間と挑戦回数を管理するScript内から経過時間と挑戦回数を取得する
             ScoreManager.GetComponent<ScoreManeger>().DisplayScore();
+            //マウスカーソルを出現させる
+            Cursor.visible = true;
+            //マウスカーソルを自由に動かせるようにする
+            Cursor.lockState = CursorLockMode.None;
+
         }
     }
 }

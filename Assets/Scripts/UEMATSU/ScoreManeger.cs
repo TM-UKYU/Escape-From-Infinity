@@ -42,6 +42,7 @@ public class ScoreManeger : MonoBehaviour
 
     public void AddTryNum()
     {
+        //’§í‰ñ”‚ğˆê‰ñ‘‚â‚·
         TryNum += 1;
     }
 
