@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
+    //ボタンを押せばこの関数を呼ぶ
     public void OnClickStartButton()
     {
         //ステージ1をロードするための処理

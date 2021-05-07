@@ -16,7 +16,7 @@ public class ScoreManeger : MonoBehaviour
     private bool FreezTime = false;
 
     // Start is called before the first frame update
-    void Start()
+    private　void Start()
     {
         //時間と挑戦回数のリセット
         time = 0;
@@ -25,7 +25,7 @@ public class ScoreManeger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //時間を進めないときはここで帰る
         if (FreezTime) { return; }
@@ -34,18 +34,21 @@ public class ScoreManeger : MonoBehaviour
         time += Time.deltaTime;
     }
 
+    //ゴールした際にこの関数を呼ぶ
     public void StopTime(bool isStop)
     {
         //時間のカウントを止める
         FreezTime = isStop;
     }
 
+    //メビウスシステムを動かした際にこの関数を呼ぶ
     public void AddTryNum()
     {
         //挑戦回数を一回増やす
         TryNum += 1;
     }
 
+    //ゴールした際にこの関数も呼ぶ
     public void DisplayScore()
     {
         //時間と挑戦の回数をUIのテキストに表示する
