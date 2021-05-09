@@ -1565,8 +1565,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46b25d68b9b47745bfc56f0d6cde089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MSystem: {fileID: 1446047778}
   RayforCamera: {fileID: 2023169923}
+  MSystem: {fileID: 1446047778}
+  "M\xF6biusSprite": {fileID: 339319532}
+--- !u!114 &1099427825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099427820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &1102826363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +2010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371310857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.09, y: -0.49, z: -5.4972506}
+  m_LocalPosition: {x: 11.09, y: -0.49, z: -5.95}
   m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_Children:
   - {fileID: 1233218696}
@@ -2666,6 +2684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u30B9\u30C6\u30FC\u30B81"
       objectReference: {fileID: 0}
+    - target: {fileID: 8410678354423501698, guid: 45a1cf40a9f8f5c4782b6da8ba552934, type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 8410678354423501699, guid: 45a1cf40a9f8f5c4782b6da8ba552934, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2726,7 +2748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-44484
+  m_Name: pb_Mesh-1616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

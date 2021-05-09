@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GimmicObject
   - Item
+  - Map
   layers:
   - Default
   - TransparentFX

@@ -50,7 +50,7 @@ public class MöbiusSystem : MonoBehaviour
         {
             if (CatchObject == GameObject.Find("Cube"))
             {
-                Debug.Log("おる");
+                Debug.Log("IN");
             }
 
             Section = true;
