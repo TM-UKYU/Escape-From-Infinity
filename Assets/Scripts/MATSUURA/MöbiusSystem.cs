@@ -17,12 +17,18 @@ public class MöbiusSystem : MonoBehaviour
 
     private bool Section;                   // 動かせるフラグ
 
+    private Quaternion q_DefRot;
+
+    private Effekseer.EffekseerEmitter EE_effekSeerEmi;   // エフェクト変数(EffekSeer)
+
     [SerializeField]
     private float seconds;                  // 収録可能な最大秒数
 
     public bool Destory;                    // 記憶した動きを破壊するフラグ
 
     public bool Stop;                       // 動きの停止フラグ
+
+    public GameObject MöbiusSprite;
 
     public GameObject CatchObject;          // 対象オブジェクト変数
 
@@ -35,6 +41,8 @@ public class MöbiusSystem : MonoBehaviour
         Destory = false;
         Stop = false;
         seconds = 10f;
+        EE_effekSeerEmi = GetComponent<Effekseer.EffekseerEmitter>();
+        q_DefRot = MöbiusSprite.transform.rotation;
     }
 
     // Update is called once per frame
@@ -42,7 +50,6 @@ public class MöbiusSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-
             Recood = true;
         }
 
@@ -52,6 +59,7 @@ public class MöbiusSystem : MonoBehaviour
             {
                 Debug.Log("IN");
             }
+            MöbiusSprite.transform.rotation = q_DefRot;
 
             Section = true;
         }
@@ -67,6 +75,11 @@ public class MöbiusSystem : MonoBehaviour
     {
         if (!CatchObject) { return; }
         if (!Recood) { return; }
+
+        if (MöbiusSprite)
+        {
+            MöbiusSprite.transform.Rotate(new Vector3(0, 0.2f, 0));
+        }
 
         Vector3 pos = CatchObject.transform.position;
         Quaternion Rot = CatchObject.transform.rotation;
@@ -120,6 +133,12 @@ public class MöbiusSystem : MonoBehaviour
 
         void ObjectMove(int Frame)
         {
+            EE_effekSeerEmi.transform.position = CatchObject.transform.position;
+            if (!EE_effekSeerEmi.exists)
+            {
+                EE_effekSeerEmi.Play(EE_effekSeerEmi.effectAsset);
+            }
+
             Vector3 pos = CatchObject.transform.position;
             Quaternion rot = CatchObject.transform.rotation;
             Vector3 scale = CatchObject.transform.localScale;
