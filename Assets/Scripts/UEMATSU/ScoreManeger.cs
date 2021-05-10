@@ -1,58 +1,107 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManeger : MonoBehaviour
 {
-    //�����������Ԃ�\������e�L�X�g
-    public Text TimeText;
-    private float time = 0;
-    //���r�E�X�V�X�e�����g�����񐔂�\������e�L�X�g
-    public Text TryText = null;
-    private int TryNum = 0;
+    //スコア(数値)
+    //private int Sucore;
 
-    //���Ԃ̃J�E���g���~�߂邽�߂̕ϐ�
-    private bool FreezTime = false;
+    // 経過時間
+    public  Text  TimeText    = null;   // クリアまでにかかった時間を表示するテキスト
+    public  Text  NowTimeText = null;   // 現在の経過時間
+    private float Seconds;              // 秒
+    private float OldSeconds;           // 1フレーム前の秒数
+    private bool  FreezTime   = false;  // 時間のカウントを止めるための変数
+
+    // メビウスシステムの使用回数
+    public  Text TryText    = null;     // メビウスシステムを使った回数を表示するテキスト
+    public  Text NowTryText = null;     // メビウスシステムを使った回数を表示するテキスト
+    private int  TryNum     = 0;        // 使用した回数
 
     // Start is called before the first frame update
-    private�@void Start()
+    void Start()
     {
-        //���Ԃƒ���񐔂̃��Z�b�g
-        time = 0;
-        TryNum = 0;
+        // 現在の状況を表示するテキストを取得
+        NowTimeText = GameObject.Find("Elapsed Time").GetComponent<Text>();
+        NowTryText = GameObject.Find("MöbiusSystem Counter").GetComponent<Text>();
+
+        if (!NowTimeText) { Debug.Log("ScoreManeger：NowTimeText 取得失敗"); }
+        else { NowTimeText.text = "Time" + "\u00A0" + "00:00:00"; }                 // ※ \u00A0 … ノーブレイクスペース(自動改行されない空白)
+
+        if (!NowTryText) { Debug.Log("ScoreManeger：NowTryText 取得失敗"); }
+        else { NowTryText.text = "Try" + "\u00A0" + "0"; }
+
+
+        // スコアリセット
+        //Sucore = 0;
+
+        // 時間停止用フラグのリセット
         FreezTime = false;
+
+        //時間と挑戦回数のリセット
+        Seconds    = 0f;
+        OldSeconds = 0f;
+        TryNum     = 0;
+        FreezTime  = false;
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        //���Ԃ�i�߂Ȃ��Ƃ��͂����ŋA��
+        //時間を進めないときはここで帰る
         if (FreezTime) { return; }
 
-        //���Ԃ�i�߂�
-        time += Time.deltaTime;
+        //時間を進める
+        Seconds += Time.deltaTime;
+
+        // 1秒毎に現在の経過時間の表示を更新
+        if ((int)Seconds != (int)OldSeconds)
+        {
+            NowTimeText.text = "Time\u00A0" + GetTime().x.ToString("00") + ":" + GetTime().y.ToString("00") + ":" + GetTime().z.ToString("00");
+        }
+
+        // 1フレーム前の時間を記憶しておく
+        OldSeconds = Seconds;
     }
 
-    //�S�[�������ۂɂ��̊֐����Ă�
     public void StopTime(bool isStop)
     {
-        //���Ԃ̃J�E���g���~�߂�
+        // 時間のカウントを止める
         FreezTime = isStop;
     }
 
-    //���r�E�X�V�X�e���𓮂������ۂɂ��̊֐����Ă�
+    // メビウスシステムの回数を一回増やす
     public void AddTryNum()
     {
-        //����񐔂���񑝂₷
+        // 挑戦回数を一回増やす
         TryNum += 1;
+
+        // 表示テキストの更新
+        NowTryText.text = "Try" + "\u00A0" + TryNum.ToString("0");
     }
 
-    //�S�[�������ۂɂ��̊֐����Ă�
     public void DisplayScore()
     {
-        //���Ԃƒ���̉񐔂�UI�̃e�L�X�g�ɕ\������
-        TimeText.text = time.ToString("N0")+"Count";
-        TryText.text = TryNum.ToString("N0")+"Num";
+        //時間と挑戦の回数をUIのテキストに表示する
+        TimeText.text = GetTime().x.ToString("00") + ":" + GetTime().y.ToString("00") + ":" + GetTime().z.ToString("00");
+        TryText.text = TryNum.ToString("N0") + "Num";
+    }
+
+    // 経過時間を 時分秒 (h,m,s) で取得
+    public Vector3 GetTime()
+    {
+        Vector3 time;
+
+        time.x = Seconds / 3600;        // 時(h)
+        time.y = Seconds % 3600 / 60;   // 分(m)
+        time.z = Seconds % 60;          // 秒(s)
+
+        time.x = (int)time.x;
+        time.y = (int)time.y;
+        time.z = (int)time.z;
+
+        return time;
     }
 }

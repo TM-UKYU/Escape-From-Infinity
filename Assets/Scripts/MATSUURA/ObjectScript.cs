@@ -160,7 +160,7 @@ public class ObjectScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Map")
         {
-            b_beRay = false;
+            //b_beRay = false;
         }
     }
 }
