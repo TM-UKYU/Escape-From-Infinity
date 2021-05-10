@@ -13,16 +13,20 @@ public class MöbiusSystem : MonoBehaviour
 
     private int CountFrame;                 // 収録フレーム総数カウンター
 
+    private int Num_FramesRecorded;         // 収録したフレーム数
+
     private bool Recood;                    // 収録するフラグ
 
     private bool Section;                   // 動かせるフラグ
 
-    private Quaternion q_DefRot;
+    private Quaternion q_DefRot;            // オブジェクトの回転量
 
     private Effekseer.EffekseerEmitter EE_effekSeerEmi;   // エフェクト変数(EffekSeer)
 
     [SerializeField]
-    private float seconds;                  // 収録可能な最大秒数
+    private const float RecordableTime = 10f;   // 収録可能な最大秒数
+
+    private float seconds;                // 収録可能な最大秒数
 
     public bool Destory;                    // 記憶した動きを破壊するフラグ
 
@@ -32,36 +36,81 @@ public class MöbiusSystem : MonoBehaviour
 
     public GameObject CatchObject;          // 対象オブジェクト変数
 
+    public ScoreManeger scoreManeger;       // スコアに必要な情報をやり取りする用 ( 使用回数等 )
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Section = false;
-        Recood = false;
-        Repetition = false;
-        Destory = false;
-        Stop = false;
-        seconds = 10f;
+        // コンポーネントを取得
+        scoreManeger = GameObject.Find("ScoreManeger").GetComponent<ScoreManeger>();
+        if (!scoreManeger) { Debug.Log("scoreManeger 取得失敗"); }
+
+        // エフェクシア初期化
         EE_effekSeerEmi = GetComponent<Effekseer.EffekseerEmitter>();
-        q_DefRot = MöbiusSprite.transform.rotation;
+
+        // メビウスシステム初期化
+        möbiusSystem_Reset();
+    }
+
+    // メビウスシステムの情報を初期化
+    void möbiusSystem_Reset()
+    {
+        Section    = false;
+        Recood     = false;
+        Repetition = false;
+        Destory    = false;
+        Stop       = false;
+        seconds    = RecordableTime;
+        q_DefRot   = MöbiusSprite.transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        // 座標記録開始
+        if (Input.GetKeyDown(KeyCode.O) && !Recood)
         {
+            if (!CatchObject) { return; }
+            
             Recood = true;
+            Debug.Log("記録開始");
+
+            // システム使用回数を加算
+            if (scoreManeger)
+            {
+                scoreManeger.AddTryNum();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        // システム起動(記録した座標を移動)
+        if (Input.GetKeyDown(KeyCode.P) && !Section)
         {
+            if (!CatchObject) { return; }
+
             if (CatchObject == GameObject.Find("Cube"))
             {
                 Debug.Log("IN");
             }
+
+            // 記録中に押しても終了する
+            RecodEnd();
+
             MöbiusSprite.transform.rotation = q_DefRot;
 
             Section = true;
+
+            Debug.Log("システム起動");
+        }
+
+        // システムリセット
+        if (Input.GetKeyDown(KeyCode.R) && !Destory && Num_FramesRecorded != 0)
+        {
+            if (!CatchObject) { return; }
+
+            Destory = true;
+            Debug.Log("メビウスシステムリセット");
+            return;
         }
 
         Recoding();
@@ -91,13 +140,29 @@ public class MöbiusSystem : MonoBehaviour
 
         seconds -= Time.deltaTime;
 
-        Debug.Log("入ってる");
+        //Debug.Log("入ってる");
+        
+        Debug.Log("記録可能時間" + seconds);
+
+        // 記録時間終了
         if (seconds <= 0)
         {
-            Recood = false;
-            CountFrame = l_GameObj_Pos.Count - 1;
-            Debug.Log("終わり");
+            RecodEnd();
         }
+    }
+
+    // 記録終了
+    private void RecodEnd()
+    {
+        Recood = false;
+        CountFrame = l_GameObj_Pos.Count - 1;
+
+        Num_FramesRecorded = CountFrame;
+
+        Debug.Log("終わり");
+        Debug.Log("CountFrame" + CountFrame);
+
+        ObjectMove(0);
     }
 
     //記憶させた動きを往復させる関数
@@ -106,6 +171,9 @@ public class MöbiusSystem : MonoBehaviour
         if (!CatchObject) { return; }
         if (!Section) { return; }
         if (Stop) { return; }
+
+        // 重力をOFF
+        catchObject_useGravity(false);
 
         if (!Repetition)
         {
@@ -130,39 +198,59 @@ public class MöbiusSystem : MonoBehaviour
                 Repetition = false;
             }
         }
+    }
 
-        void ObjectMove(int Frame)
+    // オブジェクトを保持した座標へ移動
+    private void ObjectMove(int Frame)
+    {
+        EE_effekSeerEmi.transform.position = CatchObject.transform.position;
+        if (!EE_effekSeerEmi.exists)
         {
-            EE_effekSeerEmi.transform.position = CatchObject.transform.position;
-            if (!EE_effekSeerEmi.exists)
-            {
-                EE_effekSeerEmi.Play(EE_effekSeerEmi.effectAsset);
-            }
-
-            Vector3 pos = CatchObject.transform.position;
-            Quaternion rot = CatchObject.transform.rotation;
-            Vector3 scale = CatchObject.transform.localScale;
-
-            pos = l_GameObj_Pos[Frame];
-            rot = l_GameObj_Rot[Frame];
-            scale = l_GameObj_Scale[Frame];
-
-            CatchObject.transform.position = pos;
-            CatchObject.transform.rotation = rot;
-            CatchObject.transform.localScale = scale;
+            EE_effekSeerEmi.Play(EE_effekSeerEmi.effectAsset);
         }
 
+        Vector3 pos = CatchObject.transform.position;
+        Quaternion rot = CatchObject.transform.rotation;
+        Vector3 scale = CatchObject.transform.localScale;
+
+        pos = l_GameObj_Pos[Frame];
+        rot = l_GameObj_Rot[Frame];
+        scale = l_GameObj_Scale[Frame];
+
+        CatchObject.transform.position = pos;
+        CatchObject.transform.rotation = rot;
+        CatchObject.transform.localScale = scale;
     }
 
     //記憶したものを破壊する
     public void RecetList()
     {
         if (!Destory) { return; }
+        //if (!CatchObject) { return; }
+
+        Debug.Log("リセット");
+
+        ObjectMove(CountFrame);
 
         l_GameObj_Pos.Clear();
         l_GameObj_Rot.Clear();
         l_GameObj_Scale.Clear();
 
-        Destory = false;
+        möbiusSystem_Reset();
+
+        // 重力を戻す
+        catchObject_useGravity(true);
+    }
+
+    // 掴んだオブジェクトに重力を適応するか
+    // ※ 持っている間及びシステム使用中は重力を切る(下方向への重力加速度が累積され、離した時に初速度がついてしまうのを防止する為)
+    public void catchObject_useGravity(bool useGravity)
+    {
+        if (!CatchObject) { return; }
+
+        if (CatchObject.GetComponent<Rigidbody>().useGravity != useGravity)
+        {
+            CatchObject.GetComponent<Rigidbody>().useGravity = useGravity;
+        }
     }
 }
