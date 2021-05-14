@@ -605,6 +605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444746579}
   - component: {fileID: 444746580}
+  - component: {fileID: 444746581}
   m_Layer: 0
   m_Name: SwitchSystem
   m_TagString: Untagged
@@ -633,12 +634,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444746578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bec19cce9c2e954ca598e816843f389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 1630978964}
+  DS1: {fileID: 1534745717}
+  DS2: {fileID: 100688657}
+--- !u!114 &444746581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444746578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb9d9cc76eb33a48bf4eab41792f65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 1630978964}
+  Left: {fileID: 1630978966}
+  Right: {fileID: 1630978965}
   DS1: {fileID: 1534745717}
   DS2: {fileID: 100688657}
 --- !u!1 &465789927
@@ -2640,8 +2658,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000005, y: 0.010054098, z: 0.019999998}
-  m_Center: {x: 0.0000000013969841, y: -0.0049729496, z: 0}
+  m_Size: {x: 0.020000005, y: 0.01132076, z: 0.019999998}
+  m_Center: {x: 0.0000000015685433, y: 0.004496159, z: 1.0024536e-17}
 --- !u!65 &1630978968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2653,8 +2671,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000001, y: 0.009946285, z: 0.019999998}
-  m_Center: {x: 4.6566134e-10, y: 0.0050268564, z: 0}
+  m_Size: {x: 0.020000001, y: 0.010122404, z: 0.019999998}
+  m_Center: {x: 7.8427165e-10, y: -0.004975503, z: -1.5080227e-17}
 --- !u!1 &1635419506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,7 +2946,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1590
+  m_Name: pb_Mesh-2638
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
