@@ -26,7 +26,7 @@ public class MöbiusSystem : MonoBehaviour
     [SerializeField]
     private const float RecordableTime = 10f;   // 収録可能な最大秒数
 
-    private float seconds;                // 収録可能な最大秒数
+    public float seconds;                // 収録可能な最大秒数
 
     public bool Destory;                    // 記憶した動きを破壊するフラグ
 
