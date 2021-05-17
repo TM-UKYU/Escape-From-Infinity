@@ -33,7 +33,6 @@ public class ScoreManeger : MonoBehaviour
         if (!NowTryText) { Debug.Log("ScoreManeger：NowTryText 取得失敗"); }
         else { NowTryText.text = "Try" + "\u00A0" + "0"; }
 
-
         // スコアリセット
         //Sucore = 0;
 
@@ -87,6 +86,16 @@ public class ScoreManeger : MonoBehaviour
         //時間と挑戦の回数をUIのテキストに表示する
         TimeText.text = GetTime().x.ToString("00") + ":" + GetTime().y.ToString("00") + ":" + GetTime().z.ToString("00");
         TryText.text = TryNum.ToString("N0") + "Num";
+    }
+
+    public float GetSeconds()
+    {
+        return Seconds;
+    }
+
+    public int GetNum()
+    {
+        return TryNum;
     }
 
     // 経過時間を 時分秒 (h,m,s) で取得

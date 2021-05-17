@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ClearPanel : MonoBehaviour
+public class RecordPanel : MonoBehaviour
 {
-    //パネルを登録する
-    public GameObject Panel;
+    public GameObject Recordpanel = null;
 
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        //パネルを消す
         this.gameObject.SetActive(false);
     }
 }

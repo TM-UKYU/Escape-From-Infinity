@@ -29,7 +29,6 @@ public class Gorl : MonoBehaviour
             Cursor.visible = true;
             //マウスカーソルを自由に動かせるようにする
             Cursor.lockState = CursorLockMode.None;
-
         }
     }
 }
