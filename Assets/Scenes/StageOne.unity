@@ -3629,11 +3629,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_Name: pb_Mesh-1586
-=======
-  m_Name: pb_Mesh-2638
->>>>>>> e88b64442261678579f39ed809530913b39bd8d5
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
