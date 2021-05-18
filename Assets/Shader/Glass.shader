@@ -27,7 +27,7 @@ Shader "Custom/Glass"
             //法線ベクトルと視線ベクトルの内積を取ってくる
             float alpha = 1 - (abs(dot(IN.viewDir, IN.worldNormal)));
             //二つのベクトルが平行に交わってるなら透明、垂直なら白で描画
-            o.Alpha = alpha * 0.5f;
+            o.Alpha = alpha * 1.5f;
         }
         ENDCG
     }
