@@ -34,19 +34,15 @@ public class CameraManager : MonoBehaviour
             targetChange = true;
         }
 
-        if (targetChange)
-        {
-            transform.LookAt(Vector3.Lerp(transform.forward + transform.position, LookTarget.transform.position, 0.02f), Vector3.up);
-            transform.position = Vector3.Lerp(transform.position, PosTarget.transform.position, 0.04f);
-        }
-        else
-        {
+        //if (targetChange)
+        //{
+        //    transform.LookAt(Vector3.Lerp(transform.forward + transform.position, LookTarget.transform.position, 0.02f), Vector3.up);
+        //    transform.position = Vector3.Lerp(transform.position, PosTarget.transform.position, 0.04f);
+        //}
+        //else
+        //{
             transform.position = Vector3.Lerp(transform.position, PosPlayer.transform.position, 0.5f);
             transform.LookAt(Vector3.Lerp(transform.forward + transform.position, LookPlayer.transform.position, 0.02f), Vector3.up);
-        }
-
-
+        //}
     }
-
-
 }
