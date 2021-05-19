@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 339319533}
   - component: {fileID: 339319535}
   - component: {fileID: 339319534}
+  - component: {fileID: 339319536}
   m_Layer: 5
   m_Name: "M\xF6biusImage"
   m_TagString: Untagged
@@ -745,6 +746,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339319532}
   m_CullTransparentMesh: 1
+--- !u!114 &339319536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339319532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcaa3e0df3370347be2f05b2c1a5c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "m\xF6biusSystem": {fileID: 1446047778}
 --- !u!1 &356472325
 GameObject:
   m_ObjectHideFlags: 0
@@ -22629,7 +22643,7 @@ MonoBehaviour:
   Recorded_Particle:
   - {fileID: 658196601}
   - {fileID: 1093782085}
-  - {fileID: 956290877}
+  - {fileID: 940704184}
   scoreManeger: {fileID: 0}
 --- !u!4 &1446047779
 Transform:
