@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public CameraManager cameraManeger;
+
     float inputHorizontal;
     float inputVertical;
     private Rigidbody rb;
@@ -22,6 +24,8 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cameraManeger.IS_CameraAnimation) { return; }
+
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
 
