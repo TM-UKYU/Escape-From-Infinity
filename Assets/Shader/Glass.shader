@@ -1,5 +1,12 @@
 Shader "Custom/Glass"
 {
+    Properties
+    {
+        _Color("Color", Color) = (1,1,1,1)
+        _Glossiness("Smoothness", Range(0,1)) = 0.5
+        _Metallic("Metallic", Range(0,1)) = 0.0
+    }
+
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -20,14 +27,20 @@ Shader "Custom/Glass"
             float3 viewDir;
         };
 
+        half _Glossiness;
+        half _Metallic;
+        fixed4 _Color;
+
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             //色を設定(白)
-            o.Albedo = fixed4(1, 1, 1, 1);
+            o.Albedo = _Color;
+            o.Metallic = _Metallic;
+            o.Smoothness = _Glossiness;
             //法線ベクトルと視線ベクトルの内積を取ってくる
             float alpha = 1 - (abs(dot(IN.viewDir, IN.worldNormal)));
             //二つのベクトルが平行に交わってるなら透明、垂直なら白で描画
-            o.Alpha = alpha * 1.5f;
+            o.Alpha = alpha * 1.0f + 0.3;
         }
         ENDCG
     }
