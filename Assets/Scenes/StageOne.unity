@@ -21899,6 +21899,19 @@ MonoBehaviour:
   effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
   playOnStart: 0
   isLooping: 0
+--- !u!114 &1099427826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099427820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfa8cf355b09a048840724af2138fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objScript: {fileID: 1099427824}
 --- !u!1 &1102826363
 GameObject:
   m_ObjectHideFlags: 0
@@ -22015,6 +22028,7 @@ GameObject:
   - component: {fileID: 1196195252}
   - component: {fileID: 1196195254}
   - component: {fileID: 1196195253}
+  - component: {fileID: 1196195255}
   m_Layer: 5
   m_Name: RayImage
   m_TagString: Untagged
@@ -22079,6 +22093,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196195251}
   m_CullTransparentMesh: 1
+--- !u!114 &1196195255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196195251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59baf873a55351e4fb9460dd69222b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objScript: {fileID: 1099427824}
 --- !u!1 &1199473838
 GameObject:
   m_ObjectHideFlags: 0
