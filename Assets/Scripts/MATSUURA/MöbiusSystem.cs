@@ -39,7 +39,8 @@ public class MöbiusSystem : MonoBehaviour
     public GameObject CatchObject;          // 対象オブジェクト変数
 
     // システム管理フラグ
-    private bool Record;                    // 収録するフラグ
+    [HideInInspector]
+    public bool Recood;                    // 収録するフラグ
 
     private bool Section;                   // 動かせるフラグ
 
@@ -81,7 +82,7 @@ public class MöbiusSystem : MonoBehaviour
     void möbiusSystem_Reset()
     {
         Section = false;
-        Record = false;
+        Recood = false;
         Repetition = false;
         Destory = false;
         Stop = false;
@@ -129,11 +130,11 @@ public class MöbiusSystem : MonoBehaviour
         Change_RecordedParticle();
 
         // 座標記録開始
-        if (Input.GetKeyDown(key_Record) && !Record)
+        if (Input.GetKeyDown(key_Record) && !Recood)
         {
             if (!CatchObject) { return; }
 
-            Record = true;
+            Recood = true;
             Debug.Log("記録開始");
 
             // システム使用回数を加算
@@ -182,7 +183,7 @@ public class MöbiusSystem : MonoBehaviour
     private void Recoding()
     {
         if (!CatchObject) { return; }
-        if (!Record) { return; }
+        if (!Recood) { return; }
 
         if (MöbiusSprite)
         {
@@ -213,7 +214,7 @@ public class MöbiusSystem : MonoBehaviour
     // 記録終了
     private void RecodEnd()
     {
-        Record = false;
+        Recood = false;
         CountFrame = l_GameObj_Pos.Count - 1;
 
         Num_FramesRecorded = CountFrame;
