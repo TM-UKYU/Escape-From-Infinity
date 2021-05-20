@@ -6374,7 +6374,6 @@ GameObject:
   - component: {fileID: 742081933}
   - component: {fileID: 742081932}
   - component: {fileID: 742081931}
-  - component: {fileID: 742081930}
   - component: {fileID: 742081929}
   - component: {fileID: 742081934}
   m_Layer: 3
@@ -6400,26 +6399,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!114 &742081930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742081928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ada519f7cd8d2a4097866d2fff0dba7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IS_CameraAnimation: 0
-  LookTarget: {fileID: 0}
-  PosTarget: {fileID: 0}
-  LookPlayer: {fileID: 1147500164}
-  targetChange: 0
-  playerChange: 0
-  SetCamera: 0
-  rotateSpeed: 2
 --- !u!81 &742081931
 AudioListener:
   m_ObjectHideFlags: 0
