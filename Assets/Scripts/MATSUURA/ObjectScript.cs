@@ -12,7 +12,7 @@ public class ObjectScript : MonoBehaviour
 
     private float f_RayDir;                                     // レイの距離
 
-    private bool b_beRay;                                      // レイが発動しているかどうか
+    private bool b_IsCatch;                                      // レイが発動しているかどうか
 
     private bool b_rotflg;                                     // 回転するかどうか
 
@@ -33,7 +33,7 @@ public class ObjectScript : MonoBehaviour
     {
         f_ObjectDir = 1;
         f_RayDir = 4;
-        b_beRay = false;
+        b_IsCatch = false;
         R_rigidBody = GetComponent<Rigidbody>();
     }
 
@@ -42,10 +42,10 @@ public class ObjectScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RayCheck();
+            CatchObject();
         }
 
-        if (b_beRay)
+        if (b_IsCatch)
         {
             MovePosition();
             MoveRotation();
@@ -60,36 +60,53 @@ public class ObjectScript : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            b_beRay = false;
+            b_IsCatch = false;
         }
     }
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// 関数名 RayCheck                                                                                                       //
     /// 引数:void                                                                                                             //
-    /// 返り値:void                                                                                                           //
-    /// 機能：カメラの中心からレイを飛ばし、そのレイの距離内に掴めるオブジェクトがあった場合オブジェクト座標を2D座標にする　　//
+    /// 返り値:bool                                                                                                           //
+    /// 機能：カメラの中心からレイを飛ばし、そのレイの距離内に掴めるオブジェクトがあった場合trueを返す                    　　//
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void RayCheck()
+    public bool RayCheck()
     {
         Ray ray = new Ray();
         RaycastHit hit = new RaycastHit();
         //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         ray = RayforCamera.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * f_RayDir, Color.red, 2, false);
-        Debug.Log("RayIN");
         if (Physics.Raycast(ray.origin, ray.direction, out hit, f_RayDir) && hit.collider == gameObject.GetComponent<Collider>())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// 関数名 CatchObject                                                                                                    //
+    /// 引数:void                                                                                                             //
+    /// 返り値:void                                                                                                           //
+    /// 機能：カメラの中心からレイを飛ばし、そのレイの距離内に掴めるオブジェクトがあった場合オブジェクト座標を2D座標にする　　//
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void CatchObject()
+    {
+        Debug.Log("RayIN");
+        if (RayCheck())
         {
             if (MSystem.CatchObject == null)
             {
                 MSystem.CatchObject = gameObject;
             }
-            b_beRay = true;
+            b_IsCatch = true;
         }
         else
         {
-            b_beRay = false;
+            b_IsCatch = false;
         }
 
     }
@@ -163,5 +180,7 @@ public class ObjectScript : MonoBehaviour
             //b_beRay = false;
         }
     }
+
+    public bool GetIsCatch() { return b_IsCatch; }
 }
 
