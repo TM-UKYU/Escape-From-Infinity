@@ -9,9 +9,9 @@ public class MöbiusSystem : MonoBehaviour
 {
     // 操作キー設定
     [SerializeField]
-    public KeyCode key_Record = KeyCode.O;  // 記録キー
+    public KeyCode key_Record = KeyCode.R;  // 記録キー
     [SerializeField]
-    public KeyCode key_Play = KeyCode.P;  // 再生キー
+    public KeyCode key_Play = KeyCode.Space;  // 再生キー
     [SerializeField]
     public KeyCode key_Reset = KeyCode.R;  // リセットキー
 

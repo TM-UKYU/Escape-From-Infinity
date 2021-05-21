@@ -47,6 +47,7 @@ public class RotateGimmic : MonoBehaviour
 
         if(OneFlg&&twoFlg)
         {
+
             Vector3 vec = Door.transform.position;
 
             vec.y += 0.05f;

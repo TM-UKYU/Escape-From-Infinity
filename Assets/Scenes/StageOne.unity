@@ -1256,6 +1256,7 @@ MonoBehaviour:
   Right: {fileID: 1630978965}
   DS1: {fileID: 1534745717}
   DS2: {fileID: 100688657}
+  cameraManager: {fileID: 169547590}
 --- !u!1 &465789927
 GameObject:
   m_ObjectHideFlags: 0
@@ -25161,7 +25162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3da5ee6f4776c44285b5fc19d40ba0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.38
+      value: -4.775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3da5ee6f4776c44285b5fc19d40ba0a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25169,7 +25170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3da5ee6f4776c44285b5fc19d40ba0a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.81
+      value: -12.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3da5ee6f4776c44285b5fc19d40ba0a, type: 3}
       propertyPath: m_LocalRotation.w
