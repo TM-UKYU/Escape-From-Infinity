@@ -767,6 +767,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialCanvas: {fileID: 1653420676}
+  PointCanvas: {fileID: 1196195251}
+  MebiusCanvas: {fileID: 339319532}
 --- !u!4 &285076749
 Transform:
   m_ObjectHideFlags: 0
@@ -23957,7 +23959,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 350}
+  m_SizeDelta: {x: 840, y: 390}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653420678
 MonoBehaviour:
@@ -23979,7 +23981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a7c9a88462640042bb27dee626ca97b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6420bf2568e87045acd540fdc1879ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
