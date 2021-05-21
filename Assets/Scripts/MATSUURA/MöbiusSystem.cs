@@ -13,7 +13,7 @@ public class MöbiusSystem : MonoBehaviour
     [SerializeField]
     public KeyCode key_Play = KeyCode.Space;  // 再生キー
     [SerializeField]
-    public KeyCode key_Reset = KeyCode.R;  // リセットキー
+    public KeyCode key_Reset = KeyCode.B;  // リセットキー
 
     // システムデータ
     private List<Vector3> l_GameObj_Pos = new List<Vector3>();       // 記憶媒体(List型 Pos)
