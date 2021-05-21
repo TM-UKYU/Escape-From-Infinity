@@ -26,6 +26,7 @@ public class CameraManager : MonoBehaviour
 
     private float f_backPos;
 
+    private bool b_SetPos;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class CameraManager : MonoBehaviour
         targetChange = false;
         playerChange = false;
         SetCamera = false;
+        b_SetPos = false;
         f_backPos = 1;
         f_backTime = 2;
     }
@@ -45,8 +47,17 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            v_mePotision = LookPlayer.transform.position;
-            q_meQuaternion = LookPlayer.transform.rotation;
+            SetCamera = true;
+        }
+
+        if (SetCamera)
+        {
+            if (!b_SetPos)
+            {
+                v_mePotision = LookPlayer.transform.position;
+                q_meQuaternion = LookPlayer.transform.rotation;
+                b_SetPos = true;
+            }
             targetChange = true;
         }
 
@@ -56,12 +67,7 @@ public class CameraManager : MonoBehaviour
             playerChange = true;
         }
 
-        if (SetCamera)
-        {
-            v_mePotision = LookPlayer.transform.position;
-            q_meQuaternion = LookPlayer.transform.rotation;
-            targetChange = true;
-        }
+       
 
         if (targetChange)
         {
@@ -93,6 +99,8 @@ public class CameraManager : MonoBehaviour
                 playerChange = false;
                 f_backTime = 2;
                 IS_CameraAnimation = false;
+                b_SetPos = false;
+                SetCamera = false;
             }
         }
     }

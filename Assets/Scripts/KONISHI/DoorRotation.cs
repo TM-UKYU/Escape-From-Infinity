@@ -11,11 +11,15 @@ public class DoorRotation : MonoBehaviour
     public DoubleSwitch DS1;
     public DoubleSwitch DS2;
 
+    public CameraManager cameraManager;
+
     //ドアが開いたか
     private bool doorOpenFlg = false;
 
     //総回転量
     private float totalRot = 0;
+
+    private bool b_Door;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,8 @@ public class DoorRotation : MonoBehaviour
         Door = GameObject.Find("Door");
         Left = GameObject.Find("Cube.001");
         Right = GameObject.Find("Cube.002");
+
+        b_Door = false;
     }
 
     // Update is called once per frame
@@ -32,6 +38,12 @@ public class DoorRotation : MonoBehaviour
         {
             if (!doorOpenFlg)
             {
+                if (!b_Door)
+                {
+                    cameraManager.SetCamera = true;
+                    b_Door = true;
+                }
+
                 //扉を開く
                 float rot = 1.2f;
                 Left.transform.Rotate(new Vector3(0, 0, -rot));
