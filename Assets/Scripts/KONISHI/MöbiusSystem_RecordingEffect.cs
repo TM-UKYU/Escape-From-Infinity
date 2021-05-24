@@ -70,6 +70,7 @@ public class MöbiusSystem_RecordingEffect : MöbiusSystem
                 mSystem.GetEffekseerEmitter().Stop();
                 effectFlg = false;
                 mSystem.GetEffekseerEmitter().effectAsset = effectWindow;
+                mSystem.GetEffekseerEmitter().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             }
         }
     }

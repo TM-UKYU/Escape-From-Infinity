@@ -22145,23 +22145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RayforCamera: {fileID: 2023169923}
   MSystem: {fileID: 1446047778}
---- !u!114 &1099427825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099427820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimingOfUpdate: 0
-  EmitterScale: 0
-  effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
-  playOnStart: 0
-  isLooping: 0
 --- !u!114 &1099427826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23140,7 +23123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimingOfUpdate: 0
   EmitterScale: 0
-  effectAsset: {fileID: 11400000, guid: 1b28bdd261315ba4aab3ce20f45e8f13, type: 2}
+  effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
   playOnStart: 0
   isLooping: 0
 --- !u!114 &1446047781
@@ -23168,7 +23151,7 @@ MonoBehaviour:
   Recorded_Particle: []
   scoreManeger: {fileID: 0}
   mSystem: {fileID: 1446047778}
-  effectWindow: {fileID: 11400000, guid: 0d56078bb907b384ea5a75340e8b5b58, type: 2}
+  effectWindow: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
   effectRecording: {fileID: 11400000, guid: 1b28bdd261315ba4aab3ce20f45e8f13, type: 2}
 --- !u!1 &1488038549
 GameObject:
@@ -24568,7 +24551,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38940
+  m_Name: pb_Mesh19196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
