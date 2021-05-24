@@ -25,7 +25,7 @@ public class UIAlphaChange : MonoBehaviour
         Image image = target.GetComponent<Image>();
         // 透明度上昇
         alpha = Mathf.Lerp(1, 0, 1 - möbiusSystem.seconds/10);
-        Debug.Log(möbiusSystem.seconds/10);
+        //Debug.Log(möbiusSystem.seconds/10);
         // 0=透明 1=不透明なので、1.0で完全に不透明になる
         image.SetOpacity(alpha);
     }
