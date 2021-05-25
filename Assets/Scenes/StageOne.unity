@@ -22145,23 +22145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RayforCamera: {fileID: 2023169923}
   MSystem: {fileID: 1446047778}
---- !u!114 &1099427825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099427820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimingOfUpdate: 0
-  EmitterScale: 0
-  effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
-  playOnStart: 0
-  isLooping: 0
 --- !u!114 &1099427826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23078,6 +23061,7 @@ GameObject:
   - component: {fileID: 1446047779}
   - component: {fileID: 1446047778}
   - component: {fileID: 1446047780}
+  - component: {fileID: 1446047781}
   m_Layer: 0
   m_Name: "M\xF6biusSystem"
   m_TagString: Untagged
@@ -23107,7 +23091,9 @@ MonoBehaviour:
   Recood: 0
   Destory: 0
   Stop: 0
-  Recorded_Particle: []
+  Recorded_Particle:
+  - {fileID: 956290877}
+  - {fileID: 940704184}
   scoreManeger: {fileID: 0}
 --- !u!4 &1446047779
 Transform:
@@ -23140,6 +23126,33 @@ MonoBehaviour:
   effectAsset: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
   playOnStart: 0
   isLooping: 0
+--- !u!114 &1446047781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446047777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f4e2cb8da649f4196e3843768434e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key_Record: 114
+  key_Play: 32
+  key_Reset: 98
+  RecordableTime: 10
+  seconds: 0
+  "M\xF6biusSprite": {fileID: 0}
+  CatchObject: {fileID: 0}
+  Recood: 0
+  Destory: 0
+  Stop: 0
+  Recorded_Particle: []
+  scoreManeger: {fileID: 0}
+  mSystem: {fileID: 1446047778}
+  effectWindow: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
+  effectRecording: {fileID: 11400000, guid: 1b28bdd261315ba4aab3ce20f45e8f13, type: 2}
 --- !u!1 &1488038549
 GameObject:
   m_ObjectHideFlags: 0
@@ -24538,7 +24551,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42696
+  m_Name: pb_Mesh19196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
