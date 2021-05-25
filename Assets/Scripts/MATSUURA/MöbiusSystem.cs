@@ -39,7 +39,7 @@ public class MöbiusSystem : MonoBehaviour
     public GameObject CatchObject;          // 対象オブジェクト変数
 
     // システム管理フラグ
-    [HideInInspector]
+    //[HideInInspector]
     public bool Recood;                    // 収録するフラグ
 
     private bool Section;                   // 動かせるフラグ
@@ -54,6 +54,7 @@ public class MöbiusSystem : MonoBehaviour
 
     // 外部参照
     private Effekseer.EffekseerEmitter EE_effekSeerEmi;   // エフェクト変数(EffekSeer)
+    private Effekseer.EffekseerEmitter EE_effekSeerEmi2;
 
     private GameObject Rec_Particle_Obj;     // 記録した動きを可視化するパーティクルの座標管理用
 
@@ -121,6 +122,7 @@ public class MöbiusSystem : MonoBehaviour
 
         // エフェクシア初期化
         EE_effekSeerEmi = GetComponent<Effekseer.EffekseerEmitter>();
+        EE_effekSeerEmi2 = GetComponent<Effekseer.EffekseerEmitter>();
     }
 
     // Update is called once per frame
@@ -402,5 +404,10 @@ public class MöbiusSystem : MonoBehaviour
     public int GetFramesRecorded()
     {
         return Num_FramesRecorded;
+    }
+
+    public Effekseer.EffekseerEmitter GetEffekseerEmitter()
+    {
+        return EE_effekSeerEmi;
     }
 }
