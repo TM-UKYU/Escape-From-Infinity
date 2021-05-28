@@ -65,6 +65,11 @@ public class MöbiusSystem : MonoBehaviour
     [HideInInspector]
     public ScoreManeger scoreManeger;   // スコアに必要な情報をやり取りする用 ( 使用回数等 )
 
+    //サウンド
+    AudioSource effectSE;
+    public AudioClip recordSE;
+    public AudioClip executionSE;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +82,9 @@ public class MöbiusSystem : MonoBehaviour
 
         // メビウスシステム初期化
         möbiusSystem_Reset();
+
+        //サウンドコンポーネント取得
+        effectSE = this.GetComponent<AudioSource>();
     }
 
     // メビウスシステムの情報を初期化
@@ -144,6 +152,8 @@ public class MöbiusSystem : MonoBehaviour
             {
                 scoreManeger.AddTryNum();
             }
+
+            effectSE.PlayOneShot(recordSE);
         }
 
         // システム起動(記録した座標を移動)
@@ -313,6 +323,7 @@ public class MöbiusSystem : MonoBehaviour
             if (!EE_effekSeerEmi.exists)
             {
                 EE_effekSeerEmi.Play(EE_effekSeerEmi.effectAsset);
+                effectSE.Play();
             }
         }
 
