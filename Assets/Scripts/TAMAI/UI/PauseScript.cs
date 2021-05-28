@@ -15,33 +15,38 @@ public class PauseScript : MonoBehaviour
 
     // 表示するUI
     [SerializeField]
-    private GameObject pauseUIPrefab;       // 停止中に表示するUIオブジェクト
-    [SerializeField]
-    private GameObject endConfirmationUI;   // 本当に終了して良いか確認する為のUIオブジェクト
+    private GameObject   pauseUIPrefab;       // 停止中に表示するUIオブジェクト
     
-    public GameObject pauseUIInstance;             // PauseUIのインスタンス
-
-    private GameObject endConfirmationUIInstance;   // EndUIのインスタンス
-
-    // 内部処理で使用
+    [SerializeField]
+    private GameObject   endConfirmationUI;   // 本当に終了して良いか確認する為のUIオブジェクト
+    
+    public GameObject    pauseUIInstance;      // PauseUIのインスタンス
+    
     [SerializeField]
     private GameObject[] stopObjects;       // 停止するオブジェクト ※ timeScale で止められないもの
 
     [SerializeField]
-    //private Button[] interactableButtons;   // 一時的に操作が出来ないようにするボタン
+    private Button[] interactableButtons;   // 一時的に操作が出来ないようにするボタン
+
+    // 内部処理で使用
+    private GameObject endConfirmationUIInstance;   // EndUIのインスタンス
+
+    private static bool OldChangeTutorialUI;
 
     public void SetActive_EndUIInstance( bool flg )
     {
         endConfirmationUIInstance.SetActive(flg);
     }
 
+    // 初期化
     void Start()
     {
-        isPouse     = false;
-        changePouse = false;
-        changeEndUI = false;
-
-        //pauseUIInstance = GameObject.Instantiate(pauseUIPrefab) as GameObject;
+        // フラグ初期化
+        isPouse             = false;
+        changePouse         = false;
+        changeEndUI         = false;
+        changeTutorialUI    = false;
+        OldChangeTutorialUI = false;
         endConfirmationUIInstance = GameObject.Instantiate(endConfirmationUI) as GameObject;
 
         pauseUIInstance.SetActive(false);
@@ -51,10 +56,11 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //new MonoBehaviour().Update();
-
-        if (Input.GetKeyDown(KeyCode.Escape) || changePouse)
+        //　Escapeキー or UI上の×ボタンが押されたとき
+        if (Input.GetKeyDown(KeyCode.Escape) || changePouse )
         {
+            if (tutorial.isTutorialCanvas) { return; }
+
             isPouse = !isPouse;
 
             // ポーズ画面を表示する？
@@ -75,34 +81,35 @@ public class PauseScript : MonoBehaviour
             // 切り替わった時に1度だけ実行
             if (changeEndUI != endConfirmationUIInstance.activeSelf)
             {
-                Debug.Log("EndUi 切替：" + changeEndUI);
+                //Debug.Log("EndUi 切替：" + changeEndUI);
 
-                //change_InteractableButtons(!changeEndUI);
+                change_InteractableButtons(!changeEndUI);
 
-                //foreach (var ib in interactableButtons)
-                //{
-                //    ib.interactable = !changeEndUI;
-                //}
+                foreach (var ib in interactableButtons)
+                {
+                    ib.interactable = !changeEndUI;
+                }
 
                 endConfirmationUIInstance.SetActive(changeEndUI);
             }
 
-            //if (changeTutorialUI != tutorial.TutorialCanvas.activeSelf)
-            //{
-            //    Debug.Log("基本操作画面 切替：" + changeEndUI);
-            //    change_InteractableButtons(!changeTutorialUI);
-            //}
+            if (changeTutorialUI != OldChangeTutorialUI)
+            {
+                //Debug.Log("基本操作画面 切替：" + changeTutorialUI);
+                change_InteractableButtons(!changeTutorialUI);
+                OldChangeTutorialUI = changeTutorialUI;
+            }
         }
     }
 
-    //// ボタンが有効かを切り替える
-    //void change_InteractableButtons(bool changeFlg)
-    //{
-    //    foreach (var ib in interactableButtons)
-    //    {
-    //        ib.interactable = changeFlg;
-    //    }
-    //}
+    // ボタンが有効かを切り替える
+    void change_InteractableButtons(bool changeFlg)
+    {
+        foreach (var ib in interactableButtons)
+        {
+            ib.interactable = changeFlg;
+        }
+    }
 
     // ゲーム画面に移動
     protected void GameMenu()

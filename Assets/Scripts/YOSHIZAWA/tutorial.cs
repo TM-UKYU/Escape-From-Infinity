@@ -11,13 +11,17 @@ public class tutorial : MonoBehaviour
 
     public GameObject MebiusCanvas;
 
-
+    // 外部クラスで使用
+    [HideInInspector]
+    public static bool isTutorialCanvas; // TutorialCanvas が表示中か (true = 表示中)
 
     // Start is called before the first frame update
     void Start()
     {
         PointCanvas.SetActive(false);
         MebiusCanvas.SetActive(false);
+
+        isTutorialCanvas = TutorialCanvas.activeSelf;
 
         if (TutorialCanvas.activeSelf)
         {
@@ -34,20 +38,25 @@ public class tutorial : MonoBehaviour
             TutorialCanvas_SetActive(false);
             PauseScript.changeTutorialUI = false;
 
+            isTutorialCanvas = false;
+            
             if (PauseScript.isPouse == false)
             {
                 Time.timeScale = 1.0f;
             }
         }
 
-        if (PauseScript.changeTutorialUI)
+        if (PauseScript.changeTutorialUI != isTutorialCanvas)
         {
+            if (TutorialCanvas.activeSelf) { return; }
+            
             TutorialCanvas_SetActive(true);
+            isTutorialCanvas = true;
         }
     }
 
     //チュートリアルのキャンバスを表示切替
-    void TutorialCanvas_SetActive(bool isActive)
+    public void TutorialCanvas_SetActive(bool isActive)
     {
         TutorialCanvas.SetActive(isActive);
         PointCanvas.SetActive(!isActive);
