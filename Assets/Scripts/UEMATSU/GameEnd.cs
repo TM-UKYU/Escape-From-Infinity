@@ -6,12 +6,12 @@ public class GameEnd : MonoBehaviour
 {
     private void Quit()
     {
-#if UNITY_EDITOR
-        //ゲームを終了させる処理
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        #if UNITY_EDITOR
+                //ゲームを終了させる処理
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 
     public void OnClickStartButton()

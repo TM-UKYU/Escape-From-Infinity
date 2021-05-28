@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,30 +6,40 @@ using UnityEngine.UI;
 public class PauseScript : MonoBehaviour
 {
     [HideInInspector]
-    public static bool isPouse;          // ’â~’†‚©
+    public static bool isPouse;          // åœæ­¢ä¸­ã‹
 
-    // ŠO•”ƒNƒ‰ƒX‚Åg—p
-    public static bool changePouse;      // ’â~’†‚©‚ğØ‚è‘Ö‚¦‚é 
-    public static bool changeEndUI;      // I—¹Šm”F‰æ–Ê‚ğ•\¦‚·‚é‚©Ø‚è‘Ö‚¦‚é ()
-    public static bool changeTutorialUI; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‰æ–Ê(Šî–{‘€ì) ‚ğ•\¦‚·‚é‚©Ø‚è‘Ö‚¦‚é (ŠO•”ƒNƒ‰ƒX‚Åg—p)
+    // å¤–éƒ¨ã‚¯ãƒ©ã‚¹ã§ä½¿ç”¨
+    public static bool changePouse;         // åœæ­¢ä¸­ã‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ 
+    public static bool changeTitleorEndUI;  // ã‚¿ã‚¤ãƒˆãƒ«ã«ã‚‚ã©ã‚‹ã‹ã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã™ã‚‹ã‹é¸æŠã™ã‚‹ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ã‹åˆ‡ã‚Šæ›¿ãˆã‚‹
+    public static bool changeEndUI;         // çµ‚äº†ç¢ºèªç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ã‹åˆ‡ã‚Šæ›¿ãˆã‚‹
+    public static bool changeTutorialUI;    // ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ç”»é¢(åŸºæœ¬æ“ä½œ) ã‚’è¡¨ç¤ºã™ã‚‹ã‹åˆ‡ã‚Šæ›¿ãˆã‚‹ (å¤–éƒ¨ã‚¯ãƒ©ã‚¹ã§ä½¿ç”¨)
 
-    // •\¦‚·‚éUI
+    [HideInInspector]
+    public static bool sceneSelect;         // Sceneé¸æŠç”»é¢ã§ã©ã¡ã‚‰ã‚’é¸ã‚“ã ã‹ã€€â€»true = Title, false = End
+
+    // è¡¨ç¤ºã™ã‚‹UI
     [SerializeField]
-    private GameObject   pauseUIPrefab;       // ’â~’†‚É•\¦‚·‚éUIƒIƒuƒWƒFƒNƒg
+    private GameObject   pauseUIPrefab;       // åœæ­¢ä¸­ã«è¡¨ç¤ºã™ã‚‹UIã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+
+    [SerializeField]
+    private GameObject   end_or_TitleUI;      // æœ¬å½“ã«çµ‚äº†ã—ã¦è‰¯ã„ã‹ç¢ºèªã™ã‚‹ç‚ºã®UIã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+
+    [SerializeField]
+    private GameObject   endConfirmationUI;   // æœ¬å½“ã«çµ‚äº†ã—ã¦è‰¯ã„ã‹ç¢ºèªã™ã‚‹ç‚ºã®UIã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    
+    public GameObject    pauseUIInstance;     // PauseUIã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
     
     [SerializeField]
-    private GameObject   endConfirmationUI;   // –{“–‚ÉI—¹‚µ‚Ä—Ç‚¢‚©Šm”F‚·‚éˆ×‚ÌUIƒIƒuƒWƒFƒNƒg
-    
-    public GameObject    pauseUIInstance;      // PauseUI‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
-    
-    [SerializeField]
-    private GameObject[] stopObjects;       // ’â~‚·‚éƒIƒuƒWƒFƒNƒg ¦ timeScale ‚Å~‚ß‚ç‚ê‚È‚¢‚à‚Ì
+    private GameObject[] stopObjects;       // åœæ­¢ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â€» timeScale ã§æ­¢ã‚ã‚‰ã‚Œãªã„ã‚‚ã®
 
     [SerializeField]
-    private Button[] interactableButtons;   // ˆê“I‚É‘€ì‚ªo—ˆ‚È‚¢‚æ‚¤‚É‚·‚éƒ{ƒ^ƒ“
+    private Button[] interactableButtons;   // ä¸€æ™‚çš„ã«æ“ä½œãŒå‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹ãƒœã‚¿ãƒ³
 
-    // “à•”ˆ—‚Åg—p
-    private GameObject endConfirmationUIInstance;   // EndUI‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+    // å†…éƒ¨å‡¦ç†ã§ä½¿ç”¨
+    private GameObject title_or_EendUIInstance;     // EndUIã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+    private GameObject endConfirmationUIInstance;   // EndUIã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+
+    private  Text endConfirmationUIText = null;     // ç¢ºèªç”»é¢ã§è¡¨ç¤ºã™ã‚‹æ–‡å­—
 
     private static bool OldChangeTutorialUI;
 
@@ -38,50 +48,71 @@ public class PauseScript : MonoBehaviour
         endConfirmationUIInstance.SetActive(flg);
     }
 
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     void Start()
     {
-        // ƒtƒ‰ƒO‰Šú‰»
+        // ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
         isPouse             = false;
         changePouse         = false;
+        changeTitleorEndUI  = false;
         changeEndUI         = false;
         changeTutorialUI    = false;
         OldChangeTutorialUI = false;
+
+        title_or_EendUIInstance   = GameObject.Instantiate(end_or_TitleUI) as GameObject;
         endConfirmationUIInstance = GameObject.Instantiate(endConfirmationUI) as GameObject;
 
+        endConfirmationUIText = endConfirmationUIInstance.GetComponent<Text>();
+
         pauseUIInstance.SetActive(false);
+        title_or_EendUIInstance.SetActive(false);
         endConfirmationUIInstance.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //@EscapeƒL[ or UIã‚Ì~ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+        //ã€€Escapeã‚­ãƒ¼ or UIä¸Šã®Ã—ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã
         if (Input.GetKeyDown(KeyCode.Escape) || changePouse )
         {
             if (tutorial.isTutorialCanvas) { return; }
 
             isPouse = !isPouse;
 
-            // ƒ|[ƒY‰æ–Ê‚ğ•\¦‚·‚éH
+            // ãƒãƒ¼ã‚ºç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ï¼Ÿ
             if (isPouse)
             {
-                // ƒ|[ƒY‰æ–Ê‚ÉˆÚ“®
+                // ãƒãƒ¼ã‚ºç”»é¢ã«ç§»å‹•
                 PauseMenu();
             }
             else
             {
-                // ƒQ[ƒ€‰æ–Ê‚ÉˆÚ“®
+                // ã‚²ãƒ¼ãƒ ç”»é¢ã«ç§»å‹•
                 GameMenu();
             }
         }
         
         if (isPouse)
         {
-            // Ø‚è‘Ö‚í‚Á‚½‚É1“x‚¾‚¯Às
+            ///  â†“åˆ‡ã‚Šæ›¿ã‚ã£ãŸæ™‚ã«1åº¦ã ã‘å®Ÿè¡Œ
+
+            // ã‚¿ã‚¤ãƒˆãƒ«ã‹ã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã™ã‚‹ã‹ã®é¸æŠç”»é¢
+            if (changeTitleorEndUI != title_or_EendUIInstance.activeSelf)
+            {
+                change_InteractableButtons(!changeTitleorEndUI);
+
+                foreach (var ib in interactableButtons)
+                {
+                    ib.interactable = !changeTitleorEndUI;
+                }
+
+                title_or_EendUIInstance.SetActive(changeTitleorEndUI);
+            }
+
+            // ã‚·ãƒ¼ãƒ³ç§»å‹•ã—ã¦ã‚‚è‰¯ã„ã‹ç¢ºèªã™ã‚‹ç”»é¢
             if (changeEndUI != endConfirmationUIInstance.activeSelf)
             {
-                //Debug.Log("EndUi Ø‘ÖF" + changeEndUI);
+                //Debug.Log("EndUi åˆ‡æ›¿ï¼š" + changeEndUI);
 
                 change_InteractableButtons(!changeEndUI);
 
@@ -93,16 +124,17 @@ public class PauseScript : MonoBehaviour
                 endConfirmationUIInstance.SetActive(changeEndUI);
             }
 
+            // åŸºæœ¬æ“ä½œç”»é¢
             if (changeTutorialUI != OldChangeTutorialUI)
             {
-                //Debug.Log("Šî–{‘€ì‰æ–Ê Ø‘ÖF" + changeTutorialUI);
+                //Debug.Log("åŸºæœ¬æ“ä½œç”»é¢ åˆ‡æ›¿ï¼š" + changeTutorialUI);
                 change_InteractableButtons(!changeTutorialUI);
                 OldChangeTutorialUI = changeTutorialUI;
             }
         }
     }
 
-    // ƒ{ƒ^ƒ“‚ª—LŒø‚©‚ğØ‚è‘Ö‚¦‚é
+    // ãƒœã‚¿ãƒ³ãŒæœ‰åŠ¹ã‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
     void change_InteractableButtons(bool changeFlg)
     {
         foreach (var ib in interactableButtons)
@@ -111,52 +143,52 @@ public class PauseScript : MonoBehaviour
         }
     }
 
-    // ƒQ[ƒ€‰æ–Ê‚ÉˆÚ“®
+    // ã‚²ãƒ¼ãƒ ç”»é¢ã«ç§»å‹•
     protected void GameMenu()
     {
         if (!pauseUIInstance.activeSelf) { return; }
 
-        // Pause‰æ–Ê‚ğ”ñ•\¦
+        // Pauseç”»é¢ã‚’éè¡¨ç¤º
         pauseUIInstance.SetActive(false);
 
-        // “à•”ŠÔ‚ğ‰Ò“­        
+        // å†…éƒ¨æ™‚é–“ã‚’ç¨¼åƒ        
         Time.timeScale = 1.0f;
 
-        // ƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éî•ñ‚ğXV‚·‚é
+        // ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
         AttachUpdate(true);
 
-        // ƒJ[ƒ\ƒ‹‚ğ‰æ–Ê’†‰›‚ÉŒÅ’è
+        // ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç”»é¢ä¸­å¤®ã«å›ºå®š
         Cursor.lockState = CursorLockMode.Locked;
 
-        /// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ”ñ•\¦‚É
+        /// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’éè¡¨ç¤ºã«
         Cursor.visible = false;
 
         changePouse = false;
     }
 
-    // ƒ|[ƒY‰æ–Ê‚ÉˆÚ“®
+    // ãƒãƒ¼ã‚ºç”»é¢ã«ç§»å‹•
     protected void PauseMenu()
     {
         if (pauseUIInstance.activeSelf) { return; }
 
-        // Pause‰æ–Ê‚ğ•\¦
+        // Pauseç”»é¢ã‚’è¡¨ç¤º
         pauseUIInstance.SetActive(true);
 
-        // “à•”ŠÔ‚ğ’â~
+        // å†…éƒ¨æ™‚é–“ã‚’åœæ­¢
         Time.timeScale = 0.0f;
 
-        // ƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éî•ñ‚ğXV‚µ‚È‚¢
+        // ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹æƒ…å ±ã‚’æ›´æ–°ã—ãªã„
         AttachUpdate(false);
 
-        // ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚Ì‚ğ©—R‚É“®‚©‚¹‚é
+        // ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚’è‡ªç”±ã«å‹•ã‹ã›ã‚‹
         Cursor.lockState = CursorLockMode.None;
 
-        // ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ•\¦
+        // ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
         Cursor.visible = true;
     }
 
-    // stopObjects ‚É w’è‚µ‚½ƒIƒuƒWƒFƒNƒg‚ÉƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éî•ñ‚ğXV‚·‚éH
-    // ¦ timeScale ‚É‚Ä~‚Ü‚ç‚È‚¢‚à‚Ì—p
+    // stopObjects ã« æŒ‡å®šã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹ï¼Ÿ
+    // â€» timeScale ã«ã¦æ­¢ã¾ã‚‰ãªã„ã‚‚ã®ç”¨
     public void AttachUpdate(bool updateFlg)
     {
         foreach (var stopObj in stopObjects)
@@ -164,7 +196,7 @@ public class PauseScript : MonoBehaviour
             MonoBehaviour[] monoBehaviours = stopObj.GetComponents<MonoBehaviour>();
             foreach (var monoBehaviour in monoBehaviours)
             {
-                // ƒ|ƒXƒgƒvƒƒZƒXˆÈŠO‚ğ•ÏX
+                // ãƒã‚¹ãƒˆãƒ—ãƒ­ã‚»ã‚¹ä»¥å¤–ã‚’å¤‰æ›´
                 if (!monoBehaviour.GetType().Name.StartsWith("PostProcess"))
                 {
                     monoBehaviour.enabled = updateFlg;

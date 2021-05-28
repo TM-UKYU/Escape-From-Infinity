@@ -9,6 +9,6 @@ public class EndButton : MonoBehaviour
     public void OnClickStartButton()
     {
         //ƒ^ƒCƒgƒ‹‚É–ß‚éˆ—
-        SceneManager.LoadScene("NewTitle");
+        SceneManager.LoadScene("Title");
     }
 }

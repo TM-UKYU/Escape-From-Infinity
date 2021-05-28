@@ -573,10 +573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ccf5dd0b469f64fb61f1f0befcdd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPouse: 0
-  pauseUIPrefab: {fileID: 7367365984237891789, guid: 033f585b20b53bb45a76433f68e437a0, type: 3}
-  endConfirmationUI: {fileID: 7367365984237891789, guid: 1bb433dcfd04bc14c8e0cd36b915155c, type: 3}
-  pauseUIInstance: {fileID: 8464529489682838119}
+  pauseUIPrefab: {fileID: 7367365984237891789, guid: 555cc06aecbfef547aa57d3aa83a1087, type: 3}
+  endConfirmationUI: {fileID: 7367365984237891789, guid: 6d802e3c4dced5e43ac81580295cda1c, type: 3}
+  pauseUIInstance: {fileID: 0}
   stopObjects:
   - {fileID: 0}
   - {fileID: 0}

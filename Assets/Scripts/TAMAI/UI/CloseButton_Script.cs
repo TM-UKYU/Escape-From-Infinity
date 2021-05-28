@@ -7,6 +7,14 @@ public class CloseButton_Script : MonoBehaviour
     // ボタンをクリックした時の処理
     public void OnClick()
     {
-        PauseScript.changePouse = true;
+        if (PauseScript.changeTitleorEndUI)
+        {
+            PauseScript.changeTitleorEndUI = false;
+        }
+        else
+        {
+            // ポーズ画面を閉じる
+            PauseScript.changePouse = true;
+        }
     }
 }
