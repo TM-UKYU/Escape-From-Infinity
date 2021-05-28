@@ -12,38 +12,50 @@ public class tutorial : MonoBehaviour
     public GameObject MebiusCanvas;
 
 
-// Start is called before the first frame update
+
+    // Start is called before the first frame update
     void Start()
     {
         PointCanvas.SetActive(false);
-
-
         MebiusCanvas.SetActive(false);
+
+        if (TutorialCanvas.activeSelf)
+        {
+            Time.timeScale = 0.0f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        // 表示している時は TAB で閉じる
+        if (Input.GetKeyDown(KeyCode.Tab) && TutorialCanvas.activeSelf)
         {
-            //チュートリアルのキャンバスを表示
-            TutorialCanvas.SetActive(!TutorialCanvas.activeSelf);
+            TutorialCanvas_SetActive(false);
+            PauseScript.changeTutorialUI = false;
 
-            PointCanvas.SetActive(!PointCanvas.activeSelf);
-
-
-            MebiusCanvas.SetActive(!MebiusCanvas.activeSelf);
-
+            if (PauseScript.isPouse == false)
+            {
+                Time.timeScale = 1.0f;
+            }
         }
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    TutorialCanvas.SetActive(false);
 
+        if (PauseScript.changeTutorialUI)
+        {
+            TutorialCanvas_SetActive(true);
+        }
+    }
 
-        //    PointCanvas.SetActive(true);
+    //チュートリアルのキャンバスを表示切替
+    void TutorialCanvas_SetActive(bool isActive)
+    {
+        TutorialCanvas.SetActive(isActive);
+        PointCanvas.SetActive(!isActive);
+        MebiusCanvas.SetActive(!isActive);
 
-
-        //    MebiusCanvas.SetActive(true);
-        //}
+        //TutorialCanvas.SetActive(!TutorialCanvas.activeSelf);
+        //PointCanvas.SetActive(!PointCanvas.activeSelf);
+        //MebiusCanvas.SetActive(!MebiusCanvas.activeSelf);
+        //MebiusCanvas.SetActive(!MebiusCanvas.activeSelf);
     }
 }

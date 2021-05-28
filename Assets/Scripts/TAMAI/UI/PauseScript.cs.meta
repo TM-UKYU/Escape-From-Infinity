@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e1ccf5dd0b469f64fb61f1f0befcdd54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pauseUIPrefab: {fileID: 7367365984237891789, guid: abaf0b39414c5f84f9d5988e13da5c85, type: 3}
+  - endConfirmationUI: {fileID: 7367365984237891789, guid: ae2be76747535b8469e8acec0b9ec27d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
