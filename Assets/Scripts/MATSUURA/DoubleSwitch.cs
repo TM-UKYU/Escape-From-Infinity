@@ -16,6 +16,8 @@ public class DoubleSwitch : MonoBehaviour
 
     private bool b_back;
 
+    AudioSource switchSE;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class DoubleSwitch : MonoBehaviour
         push = false;
         rd = GetComponent<Rigidbody>();
         v_oldPos = transform.position;
+
+        switchSE = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +67,7 @@ public class DoubleSwitch : MonoBehaviour
             i_Time = 4;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
             push = true;
+            switchSE.Play();
         }
     }
 
