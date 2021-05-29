@@ -23227,6 +23227,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1434086762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4523535481647934702, guid: 349b0c0a937df8945be4ca8879424aac, type: 3}
+  m_PrefabInstance: {fileID: 5874356689451659038}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1446047777
 GameObject:
   m_ObjectHideFlags: 0
@@ -23270,8 +23281,8 @@ MonoBehaviour:
   Destory: 0
   Stop: 0
   Recorded_Particle:
-  - {fileID: 956290877}
   - {fileID: 940704184}
+  - {fileID: 956290877}
   scoreManeger: {fileID: 0}
   recordSE: {fileID: 8300000, guid: aaad3cb0972fe5044bf681d0f6d06b59, type: 3}
   executionSE: {fileID: 0}
@@ -25983,7 +25994,11 @@ MonoBehaviour:
   - {fileID: 98716279}
   - {fileID: 742081928}
   - {fileID: 2023169922}
-  interactableButtons: []
+  - {fileID: 1446047777}
+  interactableButtons:
+  - {fileID: 2573270136039641806}
+  - {fileID: 7127257720797545826}
+  - {fileID: 1434086762}
 --- !u!4 &556630062118907105
 Transform:
   m_ObjectHideFlags: 0
