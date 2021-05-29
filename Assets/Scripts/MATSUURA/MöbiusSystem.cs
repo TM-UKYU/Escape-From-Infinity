@@ -140,7 +140,7 @@ public class MöbiusSystem : MonoBehaviour
         Change_RecordedParticle();
 
         // 座標記録開始
-        if (Input.GetKeyDown(key_Record) && !Recood)
+        if (Input.GetKeyDown(key_Record) && !Recood && Num_FramesRecorded == 0)
         {
             if (!CatchObject) { return; }
 
