@@ -23274,18 +23274,18 @@ MonoBehaviour:
   key_Play: 32
   key_Reset: 98
   RecordableTime: 10
+  Recorded_Particle:
+  - {fileID: 940704184}
+  - {fileID: 956290877}
+  Destory: 0
+  Stop: 0
+  scoreManeger: {fileID: 0}
+  recordSE: {fileID: 8300000, guid: aaad3cb0972fe5044bf681d0f6d06b59, type: 3}
+  executionSE: {fileID: 0}
   seconds: 0
   "M\xF6biusSprite": {fileID: 339319532}
   CatchObject: {fileID: 0}
   Recood: 0
-  Destory: 0
-  Stop: 0
-  Recorded_Particle:
-  - {fileID: 940704184}
-  - {fileID: 956290877}
-  scoreManeger: {fileID: 0}
-  recordSE: {fileID: 8300000, guid: aaad3cb0972fe5044bf681d0f6d06b59, type: 3}
-  executionSE: {fileID: 0}
 --- !u!4 &1446047779
 Transform:
   m_ObjectHideFlags: 0
@@ -23333,16 +23333,16 @@ MonoBehaviour:
   key_Play: 32
   key_Reset: 98
   RecordableTime: 10
+  Recorded_Particle: []
+  Destory: 0
+  Stop: 0
+  scoreManeger: {fileID: 0}
+  recordSE: {fileID: 0}
+  executionSE: {fileID: 0}
   seconds: 0
   "M\xF6biusSprite": {fileID: 0}
   CatchObject: {fileID: 0}
   Recood: 0
-  Destory: 0
-  Stop: 0
-  Recorded_Particle: []
-  scoreManeger: {fileID: 0}
-  recordSE: {fileID: 0}
-  executionSE: {fileID: 0}
   mSystem: {fileID: 1446047778}
   effectWindow: {fileID: 11400000, guid: f5cea8d5cd8cf26489bde585d2af521d, type: 2}
   effectRecording: {fileID: 11400000, guid: 1b28bdd261315ba4aab3ce20f45e8f13, type: 2}
