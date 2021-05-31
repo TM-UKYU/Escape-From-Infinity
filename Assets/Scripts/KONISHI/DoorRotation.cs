@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +13,10 @@ public class DoorRotation : MonoBehaviour
 
     public CameraManager cameraManager;
 
-    //ƒhƒA‚ªŠJ‚¢‚½‚©
+    //ãƒ‰ã‚¢ãŒé–‹ã„ãŸã‹
     private bool doorOpenFlg = false;
 
-    //‘‰ñ“]—Ê
+    //ç·å›è»¢é‡
     private float totalRot = 0;
 
     private bool b_Door;
@@ -34,6 +34,7 @@ public class DoorRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(DS1.push && DS2.push)
         {
             if (!doorOpenFlg)
@@ -44,7 +45,7 @@ public class DoorRotation : MonoBehaviour
                     b_Door = true;
                 }
 
-                //”à‚ğŠJ‚­
+                //æ‰‰ã‚’é–‹ã
                 float rot = 1.2f;
                 Left.transform.Rotate(new Vector3(0, 0, -rot));
                 Right.transform.Rotate(new Vector3(0, 0, rot));
@@ -56,17 +57,17 @@ public class DoorRotation : MonoBehaviour
         {
             if(doorOpenFlg)
             {
-                //”à‚ğ•Â‚¶‚é
+                //æ‰‰ã‚’é–‰ã˜ã‚‹
                 float rot = 1.2f;
                 Left.transform.Rotate(new Vector3(0, 0, rot));
                 Right.transform.Rotate(new Vector3(0, 0, -rot));
                 totalRot -= rot;
                 if (totalRot <= 0) { doorOpenFlg = false; }
             }
-            //’†“r”¼’[‚ÈŠJ‚«•û‚Ì
+            //ä¸­é€”åŠç«¯ãªé–‹ãæ–¹ã®æ™‚
             else if(totalRot >= 0)
             {
-                //”à‚ğ•Â‚¶‚é
+                //æ‰‰ã‚’é–‰ã˜ã‚‹
                 float rot = 0.9f;
                 Left.transform.Rotate(new Vector3(0, 0, rot));
                 Right.transform.Rotate(new Vector3(0, 0, -rot));

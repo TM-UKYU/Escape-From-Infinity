@@ -10,6 +10,8 @@ public class ObjectScript : MonoBehaviour
 
     private Vector3 v_moveTo;                                     // オブジェクト移動行列
 
+    private Vector3 v_savePos;                                    // 座標一時保存変数
+
     private float f_RayDir;                                     // レイの距離
 
     private bool b_IsCatch;                                      // レイが発動しているかどうか
@@ -21,7 +23,6 @@ public class ObjectScript : MonoBehaviour
     private float f_scroll;
 
     private float f_ObjectDir;
-
     // パブリック////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Camera RayforCamera;                               // カメラ変数
@@ -35,6 +36,7 @@ public class ObjectScript : MonoBehaviour
         f_RayDir = 4;
         b_IsCatch = false;
         R_rigidBody = GetComponent<Rigidbody>();
+        v_savePos = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     // 本体　更新
@@ -124,9 +126,9 @@ public class ObjectScript : MonoBehaviour
 
         Vector3 mousePos = Input.mousePosition;
 
+        Vector3 DefaultPos = Input.mousePosition;
 
-
-        Debug.Log(f_scroll);
+        //Debug.Log(f_scroll);
 
         if (f_scroll > 0)
         {
@@ -145,8 +147,16 @@ public class ObjectScript : MonoBehaviour
 
         mousePos.z = f_ObjectDir;
 
+        DefaultPos.z = 0.0f;
+
         v_moveTo = Camera.main.ScreenToWorldPoint(mousePos);
-        transform.position = v_moveTo;
+
+        v_savePos = Camera.main.ScreenToWorldPoint(DefaultPos);
+
+
+     
+        transform.position = v_savePos;
+        transform.position = Vector3.Lerp(transform.position, v_moveTo, 0.7f);
     }
 
 
@@ -177,7 +187,15 @@ public class ObjectScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Map")
         {
-            //b_beRay = false;
+            f_ObjectDir -= 0.2f;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Map")
+        {
+            f_ObjectDir -= 0.2f;
         }
     }
 

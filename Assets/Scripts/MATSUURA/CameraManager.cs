@@ -45,6 +45,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             SetCamera = true;
@@ -59,6 +60,7 @@ public class CameraManager : MonoBehaviour
                 b_SetPos = true;
             }
             targetChange = true;
+            SetCamera = false;
         }
 
 
