@@ -31,16 +31,15 @@ public class MöbiusSystem : MonoBehaviour
     [SerializeField]
     private float RecordableTime = 10f;   // 収録可能な最大秒数
 
-    [HideInInspector]
-    public float seconds;                  // 収録可能な残り時間
+    // 外部参照
+    private Effekseer.EffekseerEmitter EE_effekSeerEmi;   // エフェクト変数(EffekSeer)
 
-    public GameObject MöbiusSprite;
+    private GameObject Rec_Particle_Obj;     // 記録した動きを可視化するパーティクルの座標管理用
 
-    public GameObject CatchObject;          // 対象オブジェクト変数
+    [SerializeField]
+    private ParticleSystem[] Recorded_Particle;     // 記録した動きを可視化するパーティクル
+    private ParticleSystem[] OldRecorded_Particle;  // 1フレーム前に使用していたパーティクル
 
-    // システム管理フラグ
-    //[HideInInspector]
-    public bool Recood;                    // 収録するフラグ
 
     private bool Section;                   // 動かせるフラグ
 
@@ -52,16 +51,6 @@ public class MöbiusSystem : MonoBehaviour
     [HideInInspector]
     public bool Stop;                       // 動きの停止フラグ
 
-    // 外部参照
-    private Effekseer.EffekseerEmitter EE_effekSeerEmi;   // エフェクト変数(EffekSeer)
-    private Effekseer.EffekseerEmitter EE_effekSeerEmi2;
-
-    private GameObject Rec_Particle_Obj;     // 記録した動きを可視化するパーティクルの座標管理用
-
-    [SerializeField]
-    private ParticleSystem[] Recorded_Particle;     // 記録した動きを可視化するパーティクル
-    private ParticleSystem[] OldRecorded_Particle;  // 1フレーム前に使用していたパーティクル
-
     [HideInInspector]
     public ScoreManeger scoreManeger;   // スコアに必要な情報をやり取りする用 ( 使用回数等 )
 
@@ -69,6 +58,17 @@ public class MöbiusSystem : MonoBehaviour
     AudioSource effectSE;
     public AudioClip recordSE;
     public AudioClip executionSE;
+
+    [HideInInspector]
+    public float seconds;                  // 収録可能な残り時間
+
+    public GameObject MöbiusSprite;
+
+    public GameObject CatchObject;          // 対象オブジェクト変数
+
+    // システム管理フラグ
+    //[HideInInspector]
+    public bool Recood;                    // 収録するフラグ
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +85,7 @@ public class MöbiusSystem : MonoBehaviour
 
         //サウンドコンポーネント取得
         effectSE = this.GetComponent<AudioSource>();
+
     }
 
     // メビウスシステムの情報を初期化
@@ -130,7 +131,6 @@ public class MöbiusSystem : MonoBehaviour
 
         // エフェクシア初期化
         EE_effekSeerEmi = GetComponent<Effekseer.EffekseerEmitter>();
-        EE_effekSeerEmi2 = GetComponent<Effekseer.EffekseerEmitter>();
     }
 
     // Update is called once per frame
